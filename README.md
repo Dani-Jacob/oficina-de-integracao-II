@@ -13,7 +13,7 @@ Repositório destinado ao planejamento, desenvolvimento e documentação do sist
 - 🗄️ Banco de Dados: MongoDB
 - ⚙️ Frameworks: React / Express
 - 📦 Gerenciador de Pacotes: npm (Node.js)
-- 🧪 Testes: Postman
+- 🧪 Testes: Jest / Postman
 
 ## Requisitos Funcionais
 
@@ -35,7 +35,16 @@ Repositório destinado ao planejamento, desenvolvimento e documentação do sist
 ![image](assets/ArquiteturaAltoNivel.png)
 
 
+## Cronograma - 2025
 
+| Data            | Atividades                           |
+| --------------- | -------------------------------- |
+|  25/08 - 14/09  | Levantamento de requisitos & Definições Arquiteturais.
+|  15/09 - 22/09  | Validação Planejamento
+|  23/09 - 02/11  | SPRINT 1 - Desenvolvimento Back-end
+|  03/11 - 10/11  | Validação SPRINT 1
+|  12/11 - 07/12  | SRINT 2 - Desenvolvimento Front-end & Integração
+|  08/12 - 08/15  | Validação SPRINT 2 & Sistema
 
 ## Integrantes
 
