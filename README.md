@@ -4,7 +4,7 @@
 
 Repositório destinado ao planejamento, desenvolvimento e documentação do sistema criado para o P.E Ensino Lúdico de Lógica de Programação (ELLP). O sistema visa facilitar o cadastro dos voluntários envolvidos no projeto, bem como gerenciar os certificados de participação atribuídos a cada um desses voluntários ao longo do programa.
 
-    Projeto avaliativo da disciplina Oficina de Integração II, do curso de Engenharia de Software da UTFPR.
+Projeto avaliativo da disciplina Oficina de Integração II, do curso de Engenharia de Software da UTFPR.
 
 
 ## Tecnologias 
@@ -44,7 +44,7 @@ Repositório destinado ao planejamento, desenvolvimento e documentação do sist
 |  23/09 - 02/11  | SPRINT 1 - Desenvolvimento Back-end
 |  03/11 - 10/11  | Validação SPRINT 1
 |  12/11 - 07/12  | SRINT 2 - Desenvolvimento Front-end & Integração
-|  08/12 - 08/15  | Validação SPRINT 2 & Sistema
+|  08/12 - 15/12  | Validação SPRINT 2 & Sistema
 
 ## Integrantes
 
