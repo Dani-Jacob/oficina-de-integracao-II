@@ -28,12 +28,44 @@ Projeto avaliativo da disciplina Oficina de Integração II, do curso de Engenha
 | RF6     | Gerenciamento dos certificados       | O sistema deve permitir o gerenciamento dos certificados dos voluntários, incluindo funcionalidades de alteração e exclusão quando necessário.|
 
 
-
-
 ## Arquitetura em Alto Nível
  
 ![image](assets/ArquiteturaAltoNivel.png)
 
+## Configuração do Ambiente
+
+### Pré-requisitos
+- Node.js
+- MongoDB
+- React
+- npm
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/seu-usuario/oficina-de-integracao-II.git
+cd oficina-de-integracao-II
+```
+
+2. Configure o backend:
+```bash
+cd backend
+npm install
+cp .env.example .env
+# Configure as variáveis de ambiente no arquivo .env
+```
+
+3. Configure o frontend:
+```bash
+cd frontend
+npm install
+cp .env.example .env
+```
+
+## Testes de Backend
+- Testes unitários com Jest
+- Testes de integração com Supertest
+- Cobertura mínima de 80% do código
+- Mocking de dependências externas
 
 ## Cronograma - 2025
 
