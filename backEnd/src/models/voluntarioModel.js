@@ -20,7 +20,8 @@ const voluntarioSchema = new mongoose.Schema({
     },
     cpf:{
         type: String,
-        unique: true
+        unique: true,
+        required: true
     },
     dataNascimento:{
         type: Date,
@@ -31,14 +32,15 @@ const voluntarioSchema = new mongoose.Schema({
         required: true
     },
     status:{
-        type: ativo | inativo,
+        type: String,
+        enum: ['ativo', 'inativo'],
         required: true
     },
     dataInicioVoluntariado:{
         type: Date,
         required: true,
     },
-    dataFimVoluntatiado:{
+    dataFimVoluntariado:{
         type: Date,
         required: true,
     },

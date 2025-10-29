@@ -1,16 +1,15 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import express from 'express';
-
+import voluntarioRoutes from './routes/voluntarioRoute.js'
 
 
 dotenv.config();
 
 const app = express();
 
-
-//Middlewares
 app.use(express.json())
 
+app.use('/voluntarios', voluntarioRoutes)
 
 export default app;
