@@ -17,6 +17,34 @@ const voluntarioSchema = new mongoose.Schema({
     dataCadastro: {
         type: Date,
         default: Date.now
+    },
+    cpf:{
+        type: String,
+        unique: true
+    },
+    dataNascimento:{
+        type: Date,
+        required: true,
+    },
+    funcao:{
+        type: String,
+        required: true
+    },
+    status:{
+        type: ativo | inativo,
+        required: true
+    },
+    dataInicioVoluntariado:{
+        type: Date,
+        required: true,
+    },
+    dataFimVoluntatiado:{
+        type: Date,
+        required: true,
+    },
+    curso:{
+        type: String,
+        required: true
     }
 });
 
