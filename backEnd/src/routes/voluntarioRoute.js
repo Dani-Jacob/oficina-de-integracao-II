@@ -1,12 +1,17 @@
-import express from 'express'
-import { getVoluntario } from '../controller/voluntarioController.js'
-import validarToken from "../middlewares/authMiddleware.js"
+import express from 'express';
+import { getVoluntario, inserirVoluntario } from '../controllers/voluntarioController.js';
+import validarToken, {isAdministrador} from '../middlewares/authMiddleware.js';
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/:id', validarToken, getVoluntario)
+router.use(validarToken);
 
-export default router
+router.get('/:id', getVoluntario);
+
+//POST
+router.post('/', isAdministrador, inserirVoluntario);
+
+export default router;
 
 
 
