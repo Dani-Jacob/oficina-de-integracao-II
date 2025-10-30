@@ -18,29 +18,29 @@ const voluntarioSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    cpf:{
+    cpf: {
         type: String,
         unique: true,
         required: true
     },
-    dataNascimento:{
+    dataNascimento: {
         type: Date,
         required: true,
     },
-    funcao:{
+    funcao: {
         type: String,
         required: true
     },
-    status:{
+    status: {
         type: String,
         enum: ['ativo', 'inativo'],
         required: true
     },
-    dataInicioVoluntariado:{
+    dataInicioVoluntariado: {
         type: Date,
         required: true,
     },
-    dataFimVoluntariado:{
+    dataFimVoluntariado: {
         type: Date,
     },
     curso:{
@@ -71,6 +71,13 @@ const voluntarioSchema = new mongoose.Schema({
             required: true
         }
     }]
+},{
+    toJSON: {
+        transform: (doc, ret) => {
+            delete ret.senha;
+            return ret;
+        }
+    }
 });
 
 const Voluntario = mongoose.model('Voluntario', voluntarioSchema, 'voluntarios');
