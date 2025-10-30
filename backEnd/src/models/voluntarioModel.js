@@ -42,12 +42,35 @@ const voluntarioSchema = new mongoose.Schema({
     },
     dataFimVoluntariado: {
         type: Date,
-        required: true,
     },
-    curso: {
+    curso:{
         type: String,
         required: true
-    }
+    },
+    certificados:[{
+        horas: {
+            type: Number,
+            required: true
+        }
+    }],
+    oficinas:[{
+        nome: {
+            type: String,
+            required: true
+        },
+        dataInicio: {
+            type: Date,
+            required: true
+        },
+        dataFim: {
+            type: Date,
+            required: true
+        },
+        funcao: {
+            type: String,
+            required: true
+        }
+    }]
 },{
     toJSON: {
         transform: (doc, ret) => {
