@@ -77,4 +77,71 @@ const validateVoluntario = (req, res, next) => {
     next();
 };
 
-export { voluntarioValidationRules, validateVoluntario };
+const voluntarioUpdateValidationRules = [
+    body('nome')
+        .optional()
+        .isLength({ min: 3 }).withMessage('O nome deve ter pelo menos 3 caracteres.'),
+
+    body('email')
+        .optional()
+        .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).withMessage('Formato de email inválido.'),
+        
+    body('senha')
+        .optional()
+        .isLength({ min: 6 }).withMessage('A senha deve ter pelo menos 6 caracteres.'),
+
+    body('cpf')
+        .optional()
+        .matches(/^\d{11}$/).withMessage('O CPF deve conter exatamente 11 dígitos numéricos.'),
+
+    body('dataNascimento')
+        .optional()
+        .isISO8601().withMessage('A data de nascimento deve estar em formato válido (YYYY-MM-DD).'),
+
+    body('funcao')
+        .optional()
+        .isIn(['administrador', 'voluntario']).withMessage('A função deve ser "administrador" ou "voluntario".'),
+
+    body('status')
+        .optional()
+        .isIn(['ativo', 'inativo']).withMessage('O status deve ser "ativo" ou "inativo".'),
+
+    body('dataInicioVoluntariado')
+        .optional()
+        .isISO8601().withMessage('A data de início deve estar em formato válido (YYYY-MM-DD).'),
+
+    body('dataFimVoluntariado')
+        .optional({ checkFalsy: true })
+        .isISO8601().withMessage('A data de fim deve estar em formato válido (YYYY-MM-DD).'),
+
+    body('curso')
+        .optional(),
+
+    body('certificados')
+        .optional()
+        .isArray().withMessage('Certificados deve ser um array.'),
+    body('certificados.*.horas')
+        .if(body('certificados').exists())
+        .notEmpty().withMessage('Cada certificado deve ter o campo "horas".')
+        .isNumeric().withMessage('O campo "horas" deve ser numérico.'),
+
+    body('oficinas')
+        .optional()
+        .isArray().withMessage('Oficinas deve ser um array.'),
+    body('oficinas.*.nome')
+        .if(body('oficinas').exists())
+        .notEmpty().withMessage('Cada oficina deve ter o campo "nome".'),
+    body('oficinas.*.dataInicio')
+        .if(body('oficinas').exists())
+        .notEmpty().withMessage('Cada oficina deve ter o campo "dataInicio".')
+        .isISO8601().withMessage('O campo "dataInicio" deve estar em formato válido (YYYY-MM-DD).'),
+    body('oficinas.*.dataFim')
+        .if(body('oficinas').exists())
+        .notEmpty().withMessage('Cada oficina deve ter o campo "dataFim".')
+        .isISO8601().withMessage('O campo "dataFim" deve estar em formato válido (YYYY-MM-DD).'),
+    body('oficinas.*.funcao')
+        .if(body('oficinas').exists())
+        .notEmpty().withMessage('Cada oficina deve ter o campo "funcao".')
+];
+
+export { voluntarioValidationRules, voluntarioUpdateValidationRules, validateVoluntario };
