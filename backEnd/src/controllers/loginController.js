@@ -14,9 +14,8 @@ async function gerarToken(req, res) {
         }
 
 
-        //const senhasIguais = await bcrypt.compare(senha, voluntario.senha);
-        //TROCAR!!!!
-        const senhasIguais = senha == voluntario.senha;
+        const senhasIguais = await bcrypt.compare(senha, voluntario.senha);
+        //const senhasIguais = senha == voluntario.senha;
         if (!senhasIguais) {
             return res.status(403).json({ message: 'Credenciais inválidas' });
         }
@@ -27,8 +26,6 @@ async function gerarToken(req, res) {
             email: voluntario.email,
             funcao: voluntario.funcao
         };
-
-        console.log(payload);
         
         const token = jwt.sign(payload, process.env.JWT_SECRET || 'fusca', {
             expiresIn: '1h',

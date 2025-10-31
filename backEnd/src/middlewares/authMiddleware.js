@@ -21,8 +21,9 @@ async function authMiddleware (req, res, next){
 
 async function isAdministrador(req, res, next) {
     let funcao = req.user.funcao;
+    console.log(funcao);
     if(funcao.trim().toUpperCase() != 'ADMINISTRADOR'){
-        res.status(403).json({ message: 'Sem permissão'});
+        return res.status(403).json({ message: 'Sem permissão'});
     }
     next();
 }
