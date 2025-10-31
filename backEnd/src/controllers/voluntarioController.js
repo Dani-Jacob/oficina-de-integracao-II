@@ -70,3 +70,65 @@ async function inserirVoluntario(req, res) {
 }
 
 export { getVoluntario, inserirVoluntario }
+
+async function atualizarVoluntario(req, res) {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: 'ID de voluntário inválido' });
+  }
+
+  const updatableFields = [
+    'nome',
+    'email',
+    'cpf',
+    'dataNascimento',
+    'funcao',
+    'status',
+    'dataInicioVoluntariado',
+    'dataFimVoluntariado',
+    'curso'
+  ];
+
+  const payload = {};
+  for (const field of updatableFields) {
+    if (Object.prototype.hasOwnProperty.call(req.body, field)) {
+      payload[field] = req.body[field];
+    }
+  }
+
+  try {
+    const updated = await Voluntario.findByIdAndUpdate(id, payload, { new: true, runValidators: true });
+
+    if (!updated) {
+      return res.status(404).json({ error: 'Voluntário não encontrado' });
+    }
+
+    return res.json({ message: 'Voluntário atualizado com sucesso', voluntario: updated });
+  } catch (err) {
+    console.error('Erro ao atualizar voluntário:', err);
+    return res.status(500).json({ error: 'Erro interno ao atualizar voluntário' });
+  }
+}
+
+async function deletarVoluntario(req, res) {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: 'ID de voluntário inválido' });
+  }
+
+  try {
+    const removed = await Voluntario.findByIdAndDelete(id);
+    if (!removed) {
+      return res.status(404).json({ error: 'Voluntário não encontrado' });
+    }
+
+    return res.status(204).send();
+  } catch (err) {
+    console.error('Erro ao deletar voluntário:', err);
+    return res.status(500).json({ error: 'Erro interno ao deletar voluntário' });
+  }
+}
+
+export { atualizarVoluntario, deletarVoluntario }
