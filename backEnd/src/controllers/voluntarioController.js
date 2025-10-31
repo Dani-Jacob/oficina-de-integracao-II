@@ -1,5 +1,6 @@
-import mongoose from 'mongoose'
-import Voluntario from '../models/voluntarioModel.js'
+import mongoose from 'mongoose';
+import Voluntario from '../models/voluntarioModel.js';
+import bcrypt from 'bcrypt';
 
 async function getVoluntario(req, res) {
   const { id } = req.params;
@@ -37,10 +38,12 @@ async function inserirVoluntario(req, res) {
       curso
     } = req.body;
 
+    const senhaHash = await bcrypt.hash(senha, 10);
+
     const novoVoluntario = new Voluntario({
       nome,
       email,
-      senha,
+      senha: senhaHash,
       cpf,
       dataNascimento,
       funcao,

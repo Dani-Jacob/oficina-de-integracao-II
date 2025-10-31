@@ -2,6 +2,7 @@ import express from 'express'
 import { listarCertificados, adicionarCertificado, atualizarCertificado, removerCertificado } from '../controllers/certificadoController.js'
 import { getVoluntario, inserirVoluntario, atualizarVoluntario, deletarVoluntario } from '../controllers/voluntarioController.js';
 import validarToken, {isAdministrador} from '../middlewares/authMiddleware.js';
+import { voluntarioValidationRules, validateVoluntario } from '../middlewares/voluntarioValidator.js';
 
 const router = express.Router()
 
@@ -24,7 +25,11 @@ router.put('/:id', atualizarVoluntario)
 router.delete('/:id', deletarVoluntario)
 
 //POST
-router.post('/', isAdministrador, inserirVoluntario);
+router.post('/', 
+    isAdministrador, 
+    voluntarioValidationRules, 
+    validateVoluntario, 
+    inserirVoluntario);
 
 export default router;
 
