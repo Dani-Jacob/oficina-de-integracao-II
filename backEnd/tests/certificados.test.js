@@ -1,5 +1,14 @@
+import { jest } from '@jest/globals'
+
+// Mockar o middleware de autenticação para os testes (bypass)
+jest.unstable_mockModule('../src/middlewares/authMiddleware.js', () => ({
+  default: (req, res, next) => next(),
+  isAdministrador: (req, res, next) => next()
+}))
+
 import request from 'supertest'
-import app from '../src/app.js'
+
+const { default: app } = await import('../src/app.js')
 
 describe('Certificados - validação de endpoints', () => {
   test('GET /voluntarios/:id/certificados retorna 400 para id inválido', async () => {
