@@ -14,7 +14,7 @@ router.get('/:id/certificados', listarCertificados);
 
 router.post('/:id/certificados', adicionarCertificado);
 
-router.put('/:id/certificados/:certificadoId', atualizarCertificado);
+router.put('/:id/certificad os/:certificadoId', atualizarCertificado);
 
 router.delete('/:id/certificados/:certificadoId', removerCertificado);
 

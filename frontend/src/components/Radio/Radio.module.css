@@ -1,0 +1,49 @@
+.Radio{
+    width: 20%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Montserrat";
+    padding: 0.5% 0.5% 0.5% 0.5%;	
+}
+
+.Radio label{
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #404040;
+    display: block;
+}
+
+.radioOptions{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    flex:0.9;
+    width: 100%;
+    padding: 5px;
+    color: #404040;
+    gap:5%
+}
+
+.radioOptions label{
+    font-size: 1rem;
+    font-weight: 400;
+    color: #404040;
+}
+
+.radioOptions span{
+    display: flex;
+    flex-direction: row;
+    gap:2%;
+    text-align: center;
+}
+
+.errorMessage{
+    color: red;
+    font-size: 0.8rem;
+    margin-block: 0.25%;
+    font-size: 1rem;
+}

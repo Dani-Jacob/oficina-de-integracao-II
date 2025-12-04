@@ -1,0 +1,87 @@
+.loginForm {
+    margin: 0;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 41, 96, 0.8);
+    max-width: 700px;
+    max-height: 700px;
+    height: 70vh;
+    width: 70vh;
+    font-family: "Montserrat";
+}
+
+.loginForm img {
+    display: flex;
+    flex: 0.2;
+    width: auto;
+    height: auto;
+    max-height: 100px;
+}
+
+.loginForm h2 {
+    flex: 0.2;
+    color: #E87722;
+    font-size: 1.2rem;
+    text-align: center;
+
+}
+
+.loginForm form {
+    width: 100%;
+    display: flex;
+    flex: 0.6;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15%;
+}
+
+.loginForm section {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    width: 70%;
+    gap: 0.5rem;
+}
+
+.loginForm input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 20px;
+    border: none;
+    background-color: #f2f2f2e0;
+    color: #333333d3;
+    font-size: 1rem;
+}
+
+.loginForm label {
+    color: #ffff;
+    width: 100%;
+    font-size: 1rem;
+    font-size: 1rem;
+    text-align: center;
+    text-align: center;
+}
+
+.loginForm button {
+    width: 70%;
+    padding: 0.5rem;
+    border-radius: 20px;
+    border: none;
+    background-color: #E87722;
+    color: #000000;
+    font-size: 1rem;
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.8s;
+    transition: ease-out 0.8s;
+    cursor: pointer;
+
+}
+
+.loginForm button:hover {
+    box-shadow: inset 0 100px 0 0 #62B5E5;
+}
