@@ -2,6 +2,17 @@ import mongoose from 'mongoose';
 import Voluntario from '../models/voluntarioModel.js';
 import bcrypt from 'bcrypt';
 
+async function getVoluntarios(req, res) {
+  try {
+    const voluntarios = await Voluntario.find().select("-senha");
+
+    return res.json({ voluntarios });
+  } catch (err) {
+    console.error('Erro ao buscar voluntários:', err);
+    return res.status(500).json({ error: 'Erro interno ao buscar voluntários' });
+  }
+}
+
 async function getVoluntario(req, res) {
   const { id } = req.params;
 
@@ -72,8 +83,6 @@ async function inserirVoluntario(req, res) {
   }
 }
 
-export { getVoluntario, inserirVoluntario }
-
 async function atualizarVoluntario(req, res) {
   const { id } = req.params;
 
@@ -134,4 +143,4 @@ async function deletarVoluntario(req, res) {
   }
 }
 
-export { atualizarVoluntario, deletarVoluntario }
+export { atualizarVoluntario, deletarVoluntario, getVoluntario, getVoluntarios, inserirVoluntario }
