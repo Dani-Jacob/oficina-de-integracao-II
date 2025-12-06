@@ -1,0 +1,21 @@
+ .buttonLink{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10rem;
+    height: 2.5rem;
+    background-color: #002960;
+    color: #E87722;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+    overflow: wrap;
+    border: none;
+}
+
+.buttonLink:hover{
+    transform: scale(1.05);
+    transition: transform 0.5s;
+    box-shadow: 0 0 1px #002960;
+} 

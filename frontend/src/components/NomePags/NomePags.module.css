@@ -1,0 +1,11 @@
+.NomePags{
+    color: #E87722 ;
+    font-family: "Montserrat";
+}
+.NomePags h1{
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 0;
+}
