@@ -1,0 +1,28 @@
+.ListaOficina{
+    height: 100vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+.botoes{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding-block: 2%;
+    gap:1%
+
+}
+.botaoPresenca {
+    background-color: #002960;
+    width: 40%;
+    height: 30px;
+    min-width: 50px;
+    margin-block: 6px;
+}
+.actionButtons {
+    display: flex;
+    gap: 10px; /* Dá um espaço entre os botões */
+    align-items: center;
+  }

@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
+import Voluntarios from "./Pages/Voluntarios";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 function AppRoutes(){
@@ -11,7 +12,9 @@ function AppRoutes(){
 
                 <Route element={<ProtectedRoute/>}>
                 
-                <Route path='/Home' element={<Home/>}/>
+                    <Route path='/Home' element={<Home/>}/>
+                    <Route path='/Voluntarios' element={<Voluntarios/>}/>
+                
                 </Route>
 
                 <Route path='*' element={<h1>Not found</h1>} />
