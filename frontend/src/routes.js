@@ -3,6 +3,7 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Voluntarios from "./Pages/Voluntarios";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import CadVolPage from "./Pages/CadVolPage"
 
 function AppRoutes(){
     return(
@@ -11,13 +12,15 @@ function AppRoutes(){
                 <Route path='/Login' element={<Login/>}/>
 
                 <Route element={<ProtectedRoute/>}>
+                  <Route path='/Voluntario' element={<CadVolPage/>}/>
+                  <Route path='/Voluntario/:id' element={<CadVolPage/>}/>
                 
                     <Route path='/Home' element={<Home/>}/>
-                    <Route path='/voluntarios' element={<Voluntarios/>}/>
+                    <Route path='/Voluntarios' element={<Voluntarios/>}/>
                 
                 </Route>
 
-                <Route path='*' element={<h1>Not found</h1>} />
+                <Route path='*' element={<Login/>}/>
             </Routes>
         </BrowserRouter>
     );

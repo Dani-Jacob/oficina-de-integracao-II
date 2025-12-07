@@ -1,0 +1,30 @@
+.PopUp {
+    font-family: "Montserrat";
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 30%;
+    min-height: auto;
+    gap: 1rem;
+}
+
+.PopUp h1 {
+    color: #E87722;
+    margin: 0;
+}
+
+.PopUp p {
+    font-size: larger;
+    margin: 0;
+}

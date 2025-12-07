@@ -23,6 +23,11 @@ const voluntarioSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
+    ra: {
+        type: String,
+        unique: true,
+        required: true
+    },
     dataNascimento: {
         type: Date,
         required: true,
@@ -48,6 +53,10 @@ const voluntarioSchema = new mongoose.Schema({
         required: true
     },
     certificados:[{
+        nome: {
+            type: String,
+            required: true
+        },
         horas: {
             type: Number,
             required: true
