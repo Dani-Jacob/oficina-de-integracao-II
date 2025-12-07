@@ -77,3 +77,18 @@ export async function updateVoluntario(id, data) {
 }
   }
 
+export async function deleteVoluntario(id) {
+  try {
+    await api.delete(`/voluntarios/${id}`);
+  } catch (error) {
+    console.error('Erro ao deletar voluntario:', error);
+    if (error.response) {
+      throw new Error(error.response.data.message || 'Erro ao deletar voluntário');
+    } else if (error.request) {
+      throw new Error('Sem resposta do servidor. Verifique sua conexão.');
+    } else {
+      throw new Error('Erro');
+    }
+  }
+}
+
