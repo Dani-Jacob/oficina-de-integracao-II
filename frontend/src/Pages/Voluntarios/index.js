@@ -4,10 +4,11 @@ import Datagrid from '../../components/DataGrid';
 import Header from '../../components/Header';
 //import ButtonLink from '../../components/ButtonLink'
 import EditIcon from '@mui/icons-material/Edit';
-import { IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { IconButton, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getVoluntarios } from '../../Services/voluntariosService.js';
+import { getVoluntarios, deleteVoluntario } from '../../Services/voluntariosService.js';
 
 function Voluntarios() {
 
@@ -22,7 +23,7 @@ function Voluntarios() {
 
       try {
         const response = await getVoluntarios();
-        setVoluntarios(response);
+        setVoluntarios(response.voluntarios);
         console.log(response)
       }
       catch (err) {
@@ -34,10 +35,23 @@ function Voluntarios() {
   },
     [])
 
+  const handleDelete = async (id) => {
+    const confirm = window.confirm('Confirma exclusão do voluntário?');
+    if (!confirm) return;
+
+    try {
+      await deleteVoluntario(id);
+      // atualizar lista local sem nova requisição
+      setVoluntarios((prev) => prev.filter((v) => v._id !== id));
+    } catch (err) {
+      console.error('Erro ao deletar voluntário', err);
+      setError('Erro ao deletar voluntário');
+    }
+  }
+
 
 
   const actionColumn = {
-
     field: 'actions',
     headerName: 'Ações',
     width: 250,
@@ -45,13 +59,23 @@ function Voluntarios() {
     renderCell: (params) => (
       <div className={style.actionButtons}>
         <IconButton
-          onClick={() => console.log("ola")}//handleEdit(params.row.id)}
+          //Ajustar a parte de editar
+          //onClick={() => navigate(`/voluntarios/${params.row.id}/editar`)}
           color="primary"
           size="small"
+          title="Editar"
         >
-            <EditIcon/>
+          <EditIcon />
         </IconButton>
 
+        <IconButton
+          onClick={() => handleDelete(params.row.id)}
+          color="error"
+          size="small"
+          title="Excluir"
+        >
+          <DeleteIcon />
+        </IconButton>
       </div>
     ),
   };
@@ -66,7 +90,7 @@ function Voluntarios() {
     curso: vol.curso,
     dataNascimento: new Date(vol.dataNascimento).toLocaleDateString('pt-BR'),
     dataInicioVoluntariado: new Date(vol.dataInicioVoluntariado).toLocaleDateString('pt-BR'),
-    dataFimVoluntariado: vol.dataFimVoluntariado ? new Date(vol.dataFimVoluntariado).toLocaleDateString('pt-BR') : 'Em andamento',
+    dataFimVoluntariado: vol.dataFimVoluntariado ? new Date(vol.dataFimVoluntariado).toLocaleDateString('pt-BR') : '--',
     totalCertificados: vol.certificados?.length || 0,
     totalOficinas: vol.oficinas?.length || 0,
   }));
@@ -75,11 +99,12 @@ function Voluntarios() {
     { field: 'nome', headerName: 'Nome', width: 200 },
     { field: 'email', headerName: 'Email', width: 220 },
     { field: 'cpf', headerName: 'CPF', width: 150 },
-    { field: 'funcao', headerName: 'Função', width: 150 },
     { field: 'curso', headerName: 'Curso', width: 150 },
     { field: 'status', headerName: 'Status', width: 120 },
-    { field: 'dataInicioVoluntariado', headerName: 'Data Início', width: 150 },
+    { field: 'dataInicioVoluntariado', headerName: 'Data Entrada', width: 150 },
+    { field: 'dataFimVoluntariado', headerName: 'Data Saída', width: 150 },
     { field: 'totalOficinas', headerName: 'Oficinas', width: 100 },
+    { field: 'funcao', headerName: 'Cargo Sistema', width: 150 },
     actionColumn
   ];
 
@@ -90,6 +115,16 @@ function Voluntarios() {
         
         <Datagrid rows={rows} columns={columns} />
 
+        <div className={style.botoes}>
+          <Button
+            variant="contained"
+            color="primary"
+            className={style.botaoPresenca}
+            onClick={() => navigate('/voluntarios/novo')}
+          >
+            Adicionar Voluntário
+          </Button>
+        </div>
 
       </section>
     </>

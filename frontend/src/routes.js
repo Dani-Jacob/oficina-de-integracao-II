@@ -13,7 +13,7 @@ function AppRoutes(){
                 <Route element={<ProtectedRoute/>}>
                 
                     <Route path='/Home' element={<Home/>}/>
-                    <Route path='/Voluntarios' element={<Voluntarios/>}/>
+                    <Route path='/voluntarios' element={<Voluntarios/>}/>
                 
                 </Route>
 
