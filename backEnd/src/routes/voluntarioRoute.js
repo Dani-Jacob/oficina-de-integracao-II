@@ -6,7 +6,7 @@ import { voluntarioValidationRules, voluntarioUpdateValidationRules ,validateVol
 
 const router = express.Router()
 
-//router.use(validarToken);
+router.use(validarToken);
 
 router.get('/', getVoluntarios);
 
@@ -25,7 +25,7 @@ router.put('/:id',voluntarioUpdateValidationRules, validateVoluntario ,atualizar
 router.delete('/:id', deletarVoluntario)
 
 router.post('/', 
-    //isAdministrador, 
+    isAdministrador, 
     voluntarioValidationRules, 
     validateVoluntario, 
     inserirVoluntario);
