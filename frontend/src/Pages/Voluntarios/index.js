@@ -51,7 +51,7 @@ function Voluntarios() {
   }
 
   const handleShowOficinas = (id) => {
-    navigate(`/voluntarios/${id}/oficinas`);
+    navigate(`/Voluntarios/${id}/Oficinas`);
   }
 
 
