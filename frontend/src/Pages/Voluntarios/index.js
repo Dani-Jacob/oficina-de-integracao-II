@@ -74,7 +74,7 @@ function Voluntarios() {
 
         <IconButton
           //Ajustar a parte de editar
-          //onClick={() => navigate(`/voluntarios/${params.row.id}/editar`)}
+          onClick={() => navigate(`/voluntario/${params.row.id}`)}
           color="primary"
           size="small"
           title="Editar"
@@ -136,7 +136,7 @@ function Voluntarios() {
             variant="contained"
             color="primary"
             className={style.botaoPresenca}
-            onClick={() => navigate('/voluntarios/novo')}
+            onClick={() => navigate('/voluntario')}
           >
             Adicionar Voluntário
           </Button>
