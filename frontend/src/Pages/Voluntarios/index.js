@@ -5,6 +5,7 @@ import Header from '../../components/Header';
 //import ButtonLink from '../../components/ButtonLink'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ClassIcon from '@mui/icons-material/Class';
 import { IconButton, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -19,7 +20,7 @@ function Voluntarios() {
 
 
   useEffect(() => {
-    const carregarVoluntarios  = async () => {
+    const carregarVoluntarios = async () => {
 
       try {
         const response = await getVoluntarios();
@@ -31,7 +32,7 @@ function Voluntarios() {
       }
 
     }
-    carregarVoluntarios ();
+    carregarVoluntarios();
   },
     [])
 
@@ -49,6 +50,9 @@ function Voluntarios() {
     }
   }
 
+  const handleShowOficinas = (id) => {
+    navigate(`/voluntarios/${id}/oficinas`);
+  }
 
 
   const actionColumn = {
@@ -58,6 +62,16 @@ function Voluntarios() {
     sortable: false,
     renderCell: (params) => (
       <div className={style.actionButtons}>
+
+        <IconButton
+          onClick={() => handleShowOficinas(params.row.id)}
+          color="secondary"
+          size="small"
+          title="Ver Oficinas"
+        >
+          <ClassIcon />
+        </IconButton>
+
         <IconButton
           //Ajustar a parte de editar
           //onClick={() => navigate(`/voluntarios/${params.row.id}/editar`)}
@@ -76,6 +90,8 @@ function Voluntarios() {
         >
           <DeleteIcon />
         </IconButton>
+
+
       </div>
     ),
   };
@@ -112,7 +128,7 @@ function Voluntarios() {
     <>
       <Header />
       <section className={style.Voluntarios}>
-        
+
         <Datagrid rows={rows} columns={columns} />
 
         <div className={style.botoes}>
