@@ -47,7 +47,9 @@ async function inserirVoluntario(req, res) {
       status,
       dataInicioVoluntariado,
       dataFimVoluntariado,
-      curso
+      curso,
+      oficinas,
+      certificados
     } = req.body;
 
     const senhaHash = await bcrypt.hash(senha, 10);
@@ -63,7 +65,9 @@ async function inserirVoluntario(req, res) {
       status,
       dataInicioVoluntariado,
       dataFimVoluntariado,
-      curso
+      curso,
+      oficinas: oficinas || [],
+      certificados: certificados || []
     });
 
     const salvo = await novoVoluntario.save();
@@ -96,12 +100,15 @@ async function atualizarVoluntario(req, res) {
     'nome',
     'email',
     'cpf',
+    'ra',
     'dataNascimento',
     'funcao',
     'status',
     'dataInicioVoluntariado',
     'dataFimVoluntariado',
-    'curso'
+    'curso',
+    'oficinas',
+    'certificados'
   ];
 
   const payload = {};
