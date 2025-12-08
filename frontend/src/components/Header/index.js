@@ -9,8 +9,6 @@ function Header(){
         </Link>
         <nav>
             <Link to='/Voluntarios'>Voluntários</Link>
-
-
         </nav>
     </header>
     );

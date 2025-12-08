@@ -203,7 +203,7 @@ function CadVolForm() {
                     handleSubmit={onSubmit}
                 />
                 <ButtonLink
-                    to='/ListaDeVoluntarios'
+                    to='/Voluntarios'
                     label='Lista De Voluntários'
                 />
             </section>
