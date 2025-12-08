@@ -6,10 +6,12 @@ import Header from '../../components/Header';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ClassIcon from '@mui/icons-material/Class';
+import DescriptionIcon from '@mui/icons-material/Description';
 import { IconButton, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getVoluntarios, deleteVoluntario } from '../../Services/voluntariosService.js';
+import { gerarTermoVoluntariado } from '../../Services/pdfService.js';
 
 function Voluntarios() {
 
@@ -54,13 +56,24 @@ function Voluntarios() {
     navigate(`/voluntarios/${id}/oficinas`);
   }
 
+  const handleGerarTermo = (voluntario) => {
+    try {
+      gerarTermoVoluntariado(voluntario);
+    } catch (err) {
+      console.error('Erro ao gerar termo:', err);
+      setError('Erro ao gerar termo de voluntariado');
+    }
+  }
+
 
   const actionColumn = {
     field: 'actions',
     headerName: 'Ações',
-    width: 250,
+    width: 300,
     sortable: false,
-    renderCell: (params) => (
+    renderCell: (params) => {
+      const voluntarioOriginal = voluntarios.find(v => v._id === params.row.id);
+      return (
       <div className={style.actionButtons}>
 
         <IconButton
@@ -70,6 +83,15 @@ function Voluntarios() {
           title="Ver Oficinas"
         >
           <ClassIcon />
+        </IconButton>
+
+        <IconButton
+          onClick={() => handleGerarTermo(voluntarioOriginal)}
+          color="success"
+          size="small"
+          title="Gerar Termo de Voluntariado"
+        >
+          <DescriptionIcon />
         </IconButton>
 
         <IconButton
@@ -93,7 +115,8 @@ function Voluntarios() {
 
 
       </div>
-    ),
+      );
+    },
   };
 
   const rows = voluntarios.map((vol, index) => ({
