@@ -65,8 +65,7 @@ function Oficinas() {
       <div className={style.actionButtons}>
 
         <IconButton
-          //Ajustar a parte de editar
-          //onClick={() => navigate(`/voluntarios/${params.row.id}/editar`)}
+          onClick={() => navigate(`/Voluntarios/${id}/Oficinas/${params.row.id}`)}
           color="primary"
           size="small"
           title="Editar"
@@ -116,7 +115,7 @@ function Oficinas() {
             variant="contained"
             color="primary"
             className={style.botaoPresenca}
-            onClick={() => navigate('/voluntarios/novo')}
+            onClick={() => navigate(`/Voluntarios/${id}/Oficinas/Nova`)}
           >
             Adicionar Oficina
           </Button>
