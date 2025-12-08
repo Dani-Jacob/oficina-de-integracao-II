@@ -5,6 +5,7 @@ import Voluntarios from "./Pages/Voluntarios";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import CadVolPage from "./Pages/CadVolPage"
 import Oficinas from "./Pages/Oficinas";
+import Certificados from "./Pages/Certificados";
 
 function AppRoutes(){
     return(
@@ -18,6 +19,7 @@ function AppRoutes(){
                     <Route path='/Home' element={<Home/>}/>
                     <Route path='/Voluntarios' element={<Voluntarios/>}/>
                     <Route path='/Voluntarios/:id/Oficinas' element={<Oficinas/>}/>
+                    <Route path='/Voluntarios/:id/Certificados' element={<Certificados/>}/>
                 
                 </Route>
 
