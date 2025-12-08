@@ -22,15 +22,49 @@ export const listarCertificados = async (req, res) => {
     }
 };
 
-export const adicionarCertificado = async (req, res) => {
-    const { id } = req.params;
-    const { horas } = req.body;
+export const obterCertificado = async (req, res) => {
+    const { id, certificadoId } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ error: 'ID de voluntário inválido' });
     }
 
-    if (!horas || typeof horas !== 'number' || horas <= 0) {
+    try {
+        const voluntario = await Voluntario.findById(id);
+
+        if (!voluntario) {
+            return res.status(404).json({ error: 'Voluntário não encontrado' });
+        }
+
+        const certificado = voluntario.certificados.id(certificadoId);
+
+        if (!certificado) {
+            return res.status(404).json({ error: 'Certificado não encontrado' });
+        }
+
+        return res.json({ certificado });
+    } catch (err) {
+        console.error('Erro ao buscar certificado:', err);
+        return res.status(500).json({ error: 'Erro interno ao buscar certificado' });
+    }
+};
+
+export const adicionarCertificado = async (req, res) => {
+    const { id } = req.params;
+    const { nome, horas} = req.body;
+    
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ error: 'ID de voluntário inválido' });
+    }
+
+    let horas_float;
+    try {
+        horas_float = parseFloat(horas);
+        if (isNaN(horas_float) || horas_float <= 0) {
+            return res.status(400).json({ error: 'Horas do certificado inválidas' });
+        }
+    } catch (e) {
+        console.log(e);
         return res.status(400).json({ error: 'Horas do certificado inválidas' });
     }
 
@@ -41,7 +75,10 @@ export const adicionarCertificado = async (req, res) => {
             return res.status(404).json({ error: 'Voluntário não encontrado' });
         }
 
-        voluntario.certificados.push({ horas });
+        voluntario.certificados.push({
+            nome,
+            horas: horas_float
+        });
         await voluntario.save();
 
         return res.status(201).json(voluntario.certificados[voluntario.certificados.length - 1]);
@@ -53,7 +90,7 @@ export const adicionarCertificado = async (req, res) => {
 
 export const atualizarCertificado = async (req, res) => {
     const { id, certificadoId } = req.params;
-    const { horas } = req.body;
+    const { nome, horas } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ error: 'ID de voluntário inválido' });
@@ -63,33 +100,38 @@ export const atualizarCertificado = async (req, res) => {
         return res.status(400).json({ error: 'ID de certificado inválido' });
     }
 
-    if (!horas || typeof horas !== 'number' || horas <= 0) {
+    let horas_float;
+    try {
+        horas_float = parseFloat(horas);
+        if (isNaN(horas_float) || horas_float <= 0) {
+            return res.status(400).json({ error: 'Horas do certificado inválidas' });
+        }
+    } catch (e) {
+        console.log(e);
         return res.status(400).json({ error: 'Horas do certificado inválidas' });
     }
 
     try {
-        const voluntario = await Voluntario.findOneAndUpdate(
-            { 
-                _id: id,
-                'certificados._id': certificadoId 
-            },
-            {
-                $set: {
-                    'certificados.$.horas': horas
-                }
-            },
-            { new: true }
-        );
+        const voluntario = await Voluntario.findById(id);
 
         if (!voluntario) {
-            return res.status(404).json({ error: 'Voluntário ou certificado não encontrado' });
+            return res.status(404).json({ error: 'Voluntário não encontrado' });
         }
 
-        const certificadoAtualizado = voluntario.certificados.find(
+        const certificado = voluntario.certificados.find(
             cert => cert._id.toString() === certificadoId
         );
 
-        return res.json(certificadoAtualizado);
+        if (!certificado) {
+            return res.status(404).json({ error: 'Certificado não encontrado' });
+        }
+
+        certificado.nome = nome;
+        certificado.horas = horas_float;
+
+        await voluntario.save();
+
+        return res.json(certificado);
     } catch (err) {
         console.error('Erro ao atualizar certificado:', err);
         return res.status(500).json({ error: 'Erro interno ao atualizar certificado' });

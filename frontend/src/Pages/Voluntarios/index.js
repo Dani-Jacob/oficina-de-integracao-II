@@ -97,6 +97,9 @@ function Voluntarios() {
           title="Ver Certificados"
         >
           <ReceiptIcon />
+          </IconButton>
+          
+          <IconButton
           onClick={() => handleGerarTermo(voluntarioOriginal)}
           color="success"
           size="small"

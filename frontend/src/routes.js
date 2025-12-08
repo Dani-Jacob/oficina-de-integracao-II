@@ -5,6 +5,7 @@ import Voluntarios from "./Pages/Voluntarios";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import CadVolPage from "./Pages/CadVolPage"
 import CadOficinaPage from "./Pages/CadOficinaPage"
+import CadCertificadoPage from "./Pages/CadCertificadoPage"
 import Oficinas from "./Pages/Oficinas";
 import Certificados from "./Pages/Certificados";
 
@@ -24,6 +25,8 @@ function AppRoutes(){
                     <Route path='/Voluntarios/:id/Oficinas/Nova' element={<CadOficinaPage/>}/>
 
                     <Route path='/Voluntarios/:id/Certificados' element={<Certificados/>}/>
+                    <Route path='/Voluntarios/:voluntarioId/Certificados/Novo' element={<CadCertificadoPage/>}/>
+                    <Route path='/Voluntarios/:id/Certificados/:certificadoId' element={<CadCertificadoPage/>}/>
                 
                 </Route>
 
