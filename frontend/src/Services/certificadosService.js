@@ -10,6 +10,16 @@ export async function getCertificados(voluntarioId) {
   }
 }
 
+export async function getCertificado(voluntarioId, certificadoId) {
+  try {
+    const response = await api.get(`/voluntarios/${voluntarioId}/certificados/${certificadoId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao carregar certificado:', error);
+    throw new Error(error.response?.data?.message || 'Erro ao carregar certificado');
+  }
+}
+
 export async function adicionarCertificado(voluntarioId, data) {
   try {
     const response = await api.post(`/voluntarios/${voluntarioId}/certificados`, data);

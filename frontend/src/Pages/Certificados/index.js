@@ -3,11 +3,9 @@ import Datagrid from '../../components/DataGrid';
 import Header from '../../components/Header';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import ClassIcon from '@mui/icons-material/Class';
 import { IconButton, Button } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getVoluntario } from '../../Services/voluntariosService.js';
 import { getCertificados, deletarCertificado } from '../../Services/certificadosService.js';
 
 function Certificados() {
@@ -59,7 +57,7 @@ function Certificados() {
 
         <IconButton
           //Ajustar a parte de editar
-          //onClick={() => navigate(`/voluntarios/${params.row.id}/editar`)}
+          onClick={() => navigate(`/Voluntarios/${id}/Certificados/${params.row.id}`)}
           color="primary"
           size="small"
           title="Editar"
@@ -105,7 +103,7 @@ function Certificados() {
             variant="contained"
             color="primary"
             className={style.botaoPresenca}
-            onClick={() => navigate(`/voluntarios/${id}/certificados/novo`)}
+            onClick={() => navigate(`/Voluntarios/${id}/Certificados/Novo`)}
           >
             Adicionar Certificado
           </Button>

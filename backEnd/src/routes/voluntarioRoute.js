@@ -1,5 +1,5 @@
 import express from 'express'
-import { listarCertificados, adicionarCertificado, atualizarCertificado, removerCertificado } from '../controllers/certificadoController.js'
+import { listarCertificados, obterCertificado, adicionarCertificado, atualizarCertificado, removerCertificado } from '../controllers/certificadoController.js'
 import { getVoluntario, inserirVoluntario, atualizarVoluntario, deletarVoluntario, getVoluntarios } from '../controllers/voluntarioController.js';
 import { getOficinas, getOficina, adicionarOficina, atualizarOficina, removerOficina } from '../controllers/oficinaController.js';
 import validarToken, {isAdministrador} from '../middlewares/authMiddleware.js';
@@ -37,6 +37,8 @@ router.delete('/:id/oficinas/:oficinaId', removerOficina);
 
 //Certificados
 router.get('/:id/certificados', listarCertificados);
+
+router.get('/:id/certificados/:certificadoId', obterCertificado);
 
 router.post('/:id/certificados', adicionarCertificado);
 
