@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ClassIcon from '@mui/icons-material/Class';
+import ReceiptIcon from '@mui/icons-material/Receipt';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { IconButton, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -53,7 +54,11 @@ function Voluntarios() {
   }
 
   const handleShowOficinas = (id) => {
-    navigate(`/voluntarios/${id}/oficinas`);
+    navigate(`/Voluntarios/${id}/Oficinas`);
+  }
+
+  const handleShowCertificados = (id) => {
+    navigate(`/Voluntarios/${id}/Certificados`);
   }
 
   const handleGerarTermo = (voluntario) => {
@@ -86,6 +91,12 @@ function Voluntarios() {
         </IconButton>
 
         <IconButton
+          onClick={() => handleShowCertificados(params.row.id)}
+          color="success"
+          size="small"
+          title="Ver Certificados"
+        >
+          <ReceiptIcon />
           onClick={() => handleGerarTermo(voluntarioOriginal)}
           color="success"
           size="small"
